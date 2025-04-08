@@ -74,7 +74,7 @@ h4 {
   --gradient-color-2-transparent: rgba(144, 224, 255, 0);
   --gradient-color-3-transparent: rgba(255, 203, 87, 0);
 
-  --gradientHeight: 800px;
+  --gradientHeight: 650px;
   /* --gradientHeight: calc(100% + var(--sectionPaddingTop) + var(--transformOriginX) * var(--gradientAngleSin)); */
   --gradientAngle: -15deg;
   --gradientAngleSin: 0.212;
@@ -96,6 +96,7 @@ h4 {
 
 @media (min-width:600px) {
   .Gradient {
+    --gradientHeight: 800px;
     transform-origin: 0 100%;
   }
 }
