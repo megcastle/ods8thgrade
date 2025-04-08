@@ -1,0 +1,318 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+
+@theme {
+  --font-proxima: "proxima-nova-wide", sans-serif;
+  --text-5xl: 3.15rem;
+  --text-5xl--line-height: 1;
+}
+
+:root {
+  --gutterWidth: 16px;
+  --paddingTop: 160px;
+  --paddingBottom: 160px;
+  --modalZIndex: 999999;
+  --hoverTransition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+}
+
+html,
+body {
+  font-family: var(--font-inter);
+  color: var(--color-slate-700);
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  height: 100%;
+  text-wrap: balance;
+}
+
+h1,
+h2 {
+  font-family: var(--font-proxima);
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+h3,
+h4 {
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+  text-transform: uppercase;
+}
+
+p, label {
+  letter-spacing: var(--tracking-tight);
+}
+
+
+h3 {
+  font-size: var(--text-xl);
+}
+
+h4 {
+
+  text-wrap: balance;
+}
+
+
+/* GRADIENT */
+.Gradient {
+  --gradient-color-0: #e0f2fe;
+  --gradient-color-1: #0284c7;
+  --gradient-color-2: #06b6d4;
+  --gradient-color-3: #0c4a6e;
+  --gradient-color-0-transparent: rgba(169, 96, 238, 0);
+  --gradient-color-1-transparent: rgba(255, 51, 61, 0);
+  --gradient-color-2-transparent: rgba(144, 224, 255, 0);
+  --gradient-color-3-transparent: rgba(255, 203, 87, 0);
+
+  --gradientHeight: 800px;
+  /* --gradientHeight: calc(100% + var(--sectionPaddingTop) + var(--transformOriginX) * var(--gradientAngleSin)); */
+  --gradientAngle: -15deg;
+  --gradientAngleSin: 0.212;
+
+  position: fixed;
+  left: 0;
+  top: -20px;
+ 
+  /* width: var(--windowWidth); */
+  height: var(--gradientHeight);
+  width: auto;
+
+  transform-origin: 0 100%;
+  transform: skewY(var(--gradientAngle));
+  will-change: transform;
+  overflow: hidden;
+  border: none
+}
+
+@media (min-width:600px) {
+  .Gradient {
+    transform-origin: 0 100%;
+  }
+}
+
+.Gradient:after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 1000px;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(var(--gradient-color-0) 40%, var(--gradient-color-2-transparent) 60%) -620px -180px no-repeat, radial-gradient(var(--gradient-color-3) 33%, var(--gradient-color-3-transparent) 67%) -120px -24px no-repeat, radial-gradient(var(--gradient-color-2) 40%, var(--gradient-color-2-transparent) 70%) -470px 150px no-repeat, var(--gradient-color-0);
+}
+
+@media (min-width:600px) {
+  .Gradient:after {
+    background: radial-gradient(var(--gradient-color-0) 40%, var(--gradient-color-2-transparent) 60%) -420px -180px no-repeat, radial-gradient(var(--gradient-color-3) 23%, var(--gradient-color-3-transparent) 70%) 240px -24px no-repeat, radial-gradient(var(--gradient-color-2) 30%, var(--gradient-color-2-transparent) 70%) -270px 220px no-repeat, var(--gradient-color-0)
+  }
+}
+
+@media (min-width:900px) {
+  .Gradient:after {
+    background: radial-gradient(var(--gradient-color-3) 23%, var(--gradient-color-3-transparent) 67% 100%) 385px -24px, radial-gradient(var(--gradient-color-1) 0, var(--gradient-color-1-transparent) 60% 100%) -940px 290px, radial-gradient(var(--gradient-color-2) 10%, var(--gradient-color-2-transparent) 60% 100%) -120px 250px, radial-gradient(var(--gradient-color-1) 40%, var(--gradient-color-1-transparent) 57% 100%) 495px -44px, radial-gradient(var(--gradient-color-0) 30%, var(--gradient-color-0-transparent) 67% 100%) 122px -120px, radial-gradient(var(--gradient-color-0) 10%, var(--gradient-color-0-transparent) 60% 100%) -420px 120px, radial-gradient(var(--gradient-color-2) 15%, var(--gradient-color-2-transparent) 50% 100%) -620px 0, radial-gradient(var(--gradient-color-2) 25%, var(--gradient-color-2-transparent) 50% 100%) 520px -250px, var(--gradient-color-0);
+    background-repeat: repeat-y
+  }
+}
+
+.Gradient__canvas {
+  position: relative;
+  display: block;
+  width: inherit;
+  height: 100%;
+  aspect-ratio: auto 5 / 2;
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}
+
+.Gradient__canvas.isLoaded {
+  opacity: 1;
+  transition: opacity 1.8s ease-in 50ms;
+}
+
+.Gradient.isLoaded:after {
+  transition: transform 1s 1s;
+  transform: translateX(-50%) scaleY(.995);
+}
+
+
+/* MODAL */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.DialogContent[data-state="open"] {
+  background: #ffffff;
+}
+
+.DialogOverlay[data-state="open"],
+.DialogContent[data-state="open"] {
+  animation: fadeIn 300ms ease-out;
+}
+
+.DialogOverlay[data-state="closed"],
+.DialogContent[data-state="closed"] {
+  animation: fadeOut 300ms ease-in;
+}
+
+.montserrat {
+  font-family: var(--font-montserrat);
+}
+
+
+
+.Button {
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  display: inline-flex;
+}
+
+.Button:not(.Button__Link) {
+  padding: 0 16px;
+  --buttonColor: #ec4899;
+  --buttonHoverColor: #f9a8d4;
+  --knockoutColor: #fff;
+  height: 34px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font: var(--font-inter);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  position: relative;
+  background-color: var(--color-pink-500);
+  color: var(--knockoutColor);
+  white-space: nowrap;
+  transition: var(--hoverTransition);
+  transition-property: background-color, opacity;
+}
+
+.Button:not(.Button__Link) .Button__text {
+  padding-bottom: 1px;
+}
+
+@media (pointer:fine) {
+  .Button:hover {
+    background-color: var(--buttonHoverColor, var(--buttonColor));
+    opacity: var(--buttonHoverOpacity, 1)
+  }
+}
+
+@media (pointer:coarse) {
+  .Button:active {
+    background-color: var(--buttonHoverColor, var(--buttonColor));
+    opacity: var(--buttonHoverOpacity, 1)
+  }
+}
+
+.Button__Link {
+  --linkColor: #0a2540;
+  padding-top: 22px;
+}
+
+
+.HoverArrow {
+  --arrowSpacing: 5px;
+  --arrowHoverTransition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  --arrowHoverOffset: translateX(3px);
+  --arrowTipTransform: none;
+  --arrowLineOpacity: 0;
+  position: relative;
+  top: 1px;
+  margin-left: var(--arrowSpacing);
+  stroke-width: 2px;
+  fill: none;
+  stroke: currentColor;
+}
+
+.HoverArrow__linePath {
+  opacity: var(--arrowLineOpacity);
+  transition: opacity var(--hoverTransition, var(--arrowHoverTransition));
+}
+
+:not(svg) {
+  transform-origin: 0px 0px;
+}
+
+.HoverArrow__tipPath {
+  transform: var(--arrowTipTransform);
+  transition: transform var(--hoverTransition, var(--arrowHoverTransition));
+}
+
+.HoverArrow--sizeSmall {
+  --arrowSpacing: 4px;
+  stroke-width: 1.5px
+}
+
+.HoverArrow__linePath {
+  opacity: var(--arrowLineOpacity);
+  transition: opacity var(--hoverTransition, var(--arrowHoverTransition))
+}
+
+.HoverArrow__tipPath {
+  transform: var(--arrowTipTransform);
+  transition: transform var(--hoverTransition, var(--arrowHoverTransition))
+}
+
+@media (pointer:fine) {
+  a:hover .HoverArrow__linePath,
+  button:hover .HoverArrow__linePath {
+    --arrowLineOpacity: 1
+  }
+
+  a:hover .HoverArrow__tipPath,
+  button:hover .HoverArrow__tipPath {
+    --arrowTipTransform: var(--arrowHoverOffset)
+  }
+}
+
+@media (pointer:coarse) {
+  a:active .HoverArrow__linePath,
+  button:active .HoverArrow__linePath {
+    --arrowLineOpacity: 1
+  }
+
+  a:active .HoverArrow__tipPath,
+  button:active .HoverArrow__tipPath {
+    --arrowTipTransform: var(--arrowHoverOffset)
+  }
+}
+
+
+
+
+
+
+
