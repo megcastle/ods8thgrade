@@ -4,8 +4,6 @@
 
 @theme {
   --font-proxima: "proxima-nova-wide", sans-serif;
-  --text-5xl: 3.15rem;
-  --text-5xl--line-height: 1;
 }
 
 :root {
