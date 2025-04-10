@@ -32,35 +32,14 @@ export default function Home() {
                     <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-7">
                         <div className="col-span-1 lg:col-span-3">
                             <div className="flex flex-col space-y-6">
-                                <p className="text-base/6 text-slate-50 shadow-slate-950 text-shadow-md">
-                                    Welcome 8th Grade families,
-                                </p>
-                                <p className="text-base/6 text-slate-50 shadow-slate-950 text-shadow-md">
-                                    As the 8th Grade class nears the end of their ODS journey, we
-                                    are preparing a special slideshow to celebrate how far they have
-                                    come. This presentation will be displayed during the 8th Grade
-                                    "Beyond the Sea" Dance on June 7, 2025.
-                                </p>
-                                <p className="text-base/6 text-slate-50 shadow-slate-950 text-shadow-md">
-                                    Each slide will feature a student's name, a picture of them as a
-                                    baby, a recent picture, and an optional short message from you,
-                                    their parent. Students whose
-                                    parents do not wish to participate will not be included.
-                                </p>
-                                <p className="text-base/6 text-slate-50 shadow-slate-950 text-shadow-md">
-                                    Please take a moment to fill out the following form and upload
-                                    two pictures of your child. Your contributions will help make
-                                    this a memorable and heartfelt tribute for all our 8th Grade
-                                    graduates!
-                                </p>
-
+                               
                             </div>
                         </div>
                         <div className="col-span-1 lg:col-span-4">
                         <div className="-m-2 grid grid-cols-1 rounded-2xl shadow-[inset_0_0_2px_1px_#ffffff4d] ring-1 ring-black/5 w-full mx-auto ">
                             <div className="grid grid-cols-1 rounded-2xl p-2 shadow-md shadow-black/5">
                                 <div className="rounded-xl bg-white/95 p-6 lg:p-12 pb-9 shadow-2xl ring-1 ring-black/5 backdrop-opacity-10">
-                                    <Form />
+                                  
                                 </div>
                             </div>
                         </div>
