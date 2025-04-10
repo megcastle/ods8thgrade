@@ -44,24 +44,20 @@ h2 {
 h3,
 h4 {
   letter-spacing: var(--tracking-tight);
-  text-wrap: balance;
-  text-transform: uppercase;
 }
-
-p, label {
-  letter-spacing: var(--tracking-tight);
-}
-
 
 h3 {
   font-size: var(--text-xl);
+  text-transform: uppercase;
 }
 
-h4 {
-
-  text-wrap: balance;
+ol span h3 {
+  font-family: var(--font-montserrat)
 }
 
+p, label, li {
+  letter-spacing: var(--tracking-tight);
+}
 
 /* GRADIENT */
 .Gradient {
@@ -74,8 +70,7 @@ h4 {
   --gradient-color-2-transparent: rgba(144, 224, 255, 0);
   --gradient-color-3-transparent: rgba(255, 203, 87, 0);
 
-  --gradientHeight: 650px;
-  /* --gradientHeight: calc(100% + var(--sectionPaddingTop) + var(--transformOriginX) * var(--gradientAngleSin)); */
+  --gradientHeight: 700px;
   --gradientAngle: -15deg;
   --gradientAngleSin: 0.212;
 
@@ -83,7 +78,6 @@ h4 {
   left: 0;
   top: -20px;
  
-  /* width: var(--windowWidth); */
   height: var(--gradientHeight);
   width: auto;
 
@@ -96,7 +90,7 @@ h4 {
 
 @media (min-width:600px) {
   .Gradient {
-    --gradientHeight: 800px;
+    --gradientHeight: 850px;
     transform-origin: 0 100%;
   }
 }
@@ -147,6 +141,18 @@ h4 {
   transform: translateX(-50%) scaleY(.995);
 }
 
+/* POPOVER */
+.PopoverContent {
+  --popoverWidth: calc(100vw - 2rem);
+  /* width: var(--popoverWidth); */
+  width: 50rem;
+}
+
+.PopoverTrigger {
+  font-size: inherit;
+}
+
+
 
 /* MODAL */
 @keyframes fadeIn {
@@ -183,9 +189,6 @@ h4 {
   animation: fadeOut 300ms ease-in;
 }
 
-.montserrat {
-  font-family: var(--font-montserrat);
-}
 
 
 
@@ -199,7 +202,7 @@ h4 {
 }
 
 .Button:not(.Button__Link) {
-  padding: 0 16px;
+
   --buttonColor: #ec4899;
   --buttonHoverColor: #f9a8d4;
   --knockoutColor: #fff;
@@ -261,9 +264,9 @@ h4 {
   transition: opacity var(--hoverTransition, var(--arrowHoverTransition));
 }
 
-:not(svg) {
+/* :not(svg) {
   transform-origin: 0px 0px;
-}
+} */
 
 .HoverArrow__tipPath {
   transform: var(--arrowTipTransform);
